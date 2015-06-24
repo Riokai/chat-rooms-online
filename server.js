@@ -3,6 +3,8 @@ var fs   = require('fs');
 var path = require('path');
 var mime = require('mime');
 
+var chatServer = require('./lib/chat_server.js');
+
 var cache = {};
 var PORT = 8000;
 
@@ -65,3 +67,5 @@ var server = http.createServer( function( req, res) {
 server.listen( PORT, function() {
   console.log( 'Server running on port ' + PORT);
 });
+// 启动Socket.io服务器
+chatServer.listen( server );
