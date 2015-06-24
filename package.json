@@ -1,0 +1,20 @@
+{
+  "name": "chatrooms",
+  "version": "0.0.1",
+  "description": "chat server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat",
+    "server",
+    "socket.io"
+  ],
+  "author": "riokai",
+  "license": "ISC",
+  "dependencies": {
+    "mime": "^1.3.4",
+    "socket.io": "^1.3.5"
+  }
+}
