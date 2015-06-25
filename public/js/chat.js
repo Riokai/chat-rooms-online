@@ -3,6 +3,7 @@ var Chat = function ( socket ) {
 };
 
 Chat.prototype.sendMessage = function( room, text ) {
+  // console.log('current room: ' + this.room);
   this.socket.emit( 'message', {
     room: room,
     text: text
@@ -10,6 +11,8 @@ Chat.prototype.sendMessage = function( room, text ) {
 };
 
 Chat.prototype.changeRoom = function ( room ) {
+  // this.room = room;
+  // console.log(this.room);
   this.socket.emit( 'join', {
     newRoom: room
   });
@@ -70,6 +73,9 @@ $(document).ready( function() {
 
   // 显示房间变更结果
   socket.on( 'joinResult', function( result ) {
+
+    chatApp.room = result.room;
+
     $('#room-list').append( divEscapedContentElement( result.room ) );
     $('#messages').append( divSystemContentElement( '加入房间' +　result.room ) );
   } );

@@ -17,11 +17,9 @@ var processUserInput = function( chatApp, socket ) {
       $('#message').append( divSystemContentElement( systemMessage ) );
     } 
   } else {
-    // console.log(message);
-    // chatApp.sendMessage( $('#room').text(), message );
-    chatApp.sendMessage( 'Lobby', message );
+    chatApp.sendMessage( chatApp.room, message );
 
-    $('#messages').append( divEscapedContentElement( message ) );
+    $('#messages').append( divEscapedContentElement( '自己：' +  message ) );
     $('#messages').scrollTop( $('#messages').prop( 'scrollHeight') );
   }
 

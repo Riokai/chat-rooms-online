@@ -20,7 +20,7 @@ a {
 
 #messages {
   width: 690px;
-  height: 600px;
+  height: 400px;
   overflow: auto;
   background-color: #eee;
   margin-bottom: 1em;
@@ -30,7 +30,7 @@ a {
 #room-list {
   float: right;
   width: 100px;
-  height: 600px;
+  height: 400px;
   overflow: hidden;
 }
 
