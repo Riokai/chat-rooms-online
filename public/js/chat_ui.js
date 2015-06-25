@@ -10,14 +10,16 @@ var processUserInput = function( chatApp, socket ) {
   var message = $('#send-message').val();
   var systemMessage;
 
-  if ( message.chatAt( 0 ) === '/' ) {
+  if ( message.charAt( 0 ) === '/' ) {
     systemMessage = chatApp.processCommand( message );
 
     if ( systemMessage ) {
       $('#message').append( divSystemContentElement( systemMessage ) );
     } 
   } else {
-    chatApp.sendMessage( $('#room').text(), message);
+    // console.log(message);
+    // chatApp.sendMessage( $('#room').text(), message );
+    chatApp.sendMessage( 'Lobby', message );
 
     $('#messages').append( divEscapedContentElement( message ) );
     $('#messages').scrollTop( $('#messages').prop( 'scrollHeight') );

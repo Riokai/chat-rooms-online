@@ -38,7 +38,7 @@ var serveStatic = function( res, cache, absPath ) {
           if ( err ) {
             send404( res );
           } else {
-            cache[ absPath ] = data;
+            // cache[ absPath ] = data;
             sendFile( res, absPath, data );
           }
         } );

@@ -26,10 +26,13 @@ Chat.prototype.processCommand = function( command ) {
                   .substring( 1, words[0].length )
                   .toLowerCase();
 
+  // console.log(command);
+
   switch ( command ) {
     case 'join':
       words.shift();
       room = words.join(' ');
+      // console.log(room);
       this.changeRoom( room );
       break;
 
@@ -67,14 +70,14 @@ $(document).ready( function() {
 
   // 显示房间变更结果
   socket.on( 'joinResult', function( result ) {
-    $('#room').text( result.room );
-    $('#messages').append( divSystemContentElement( '房间变更。') );
+    $('#room-list').append( divEscapedContentElement( result.room ) );
+    $('#messages').append( divSystemContentElement( '加入房间' +　result.room ) );
   } );
 
   // 显示接收到的消息
   socket.on( 'message', function( message ) {
+    console.log('message received');
     var newElement = $('<div></div>').text( message.text );
-
     $('#messages').append( newElement );
   });
 
@@ -96,19 +99,29 @@ $(document).ready( function() {
       $('#send-message').focus(); 
     } );
 
-    // 定时请求可用房间列表
-    setInterval( function() {
-      socket.emit( 'rooms' );
-    }, 1000);
+  } );
+
+  // 定时请求可用房间列表
+  setInterval( function() {
+    socket.emit( 'rooms' );
+  }, 1000);
+
+  $('#send-message').focus();
+
+  $('#send-button').click( function( e ) {
+    e.preventDefault();
+
+    processUserInput( chatApp, socket );
 
     $('#send-message').focus();
 
-    $('#send-form').submit( function() {
-      processUserInput( chatApp, socket );
+    return false;
+  });
 
-      return false;
-    });
+  // $('#send-button').click( function( e ) {
+  //   e.preventDefault();
 
-  } );
+  //   console.log(111);
+  // });
 
 } );
